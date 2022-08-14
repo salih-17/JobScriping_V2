@@ -97,7 +97,7 @@ def collectinglinks ():
         
   lldata = pd.DataFrame (Links)
   dt_string = datetime.now().strftime("%Y/%m/%d %H:%M:%S")
-  file_name = dt_string +"--" + str(int(random.random()*12345)) 
+  file_name = str (dt_string) +"--" + str(int(random.random()*12345)) 
 
   try:
     lldata.to_excel (file_name + 'linkdataset.xlsx')
@@ -237,7 +237,8 @@ def main():
     df2.to_sql (con =my_conn , name = 'IndeedDataSet5' , if_exists = 'append' , index = False )
     
     dt_string = datetime.now().strftime("%Y/%m/%d %H:%M:%S")
-    file_name = dt_string +"--" + str(int(random.random()*12345)) 
+    
+    file_name = str ( dt_string ) +"--" + str(int(random.random()*12345)) 
     
     try:
       df2.to_excel(file_name + 'dataset.xlsx')
