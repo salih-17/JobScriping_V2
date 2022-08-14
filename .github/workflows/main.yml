@@ -20,6 +20,11 @@ jobs:
         with:
           python-version: '3.9'
           cache: 'pip'
+      - name: Installed package list
+        run: apt list --installed
+      - name: Remove Chrome
+        run: sudo apt purge google-chrome-stable
+        
       - run: pip install -r requirements.txt
 
       - id: Run_sc
