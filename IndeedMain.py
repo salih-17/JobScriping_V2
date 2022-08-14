@@ -9,18 +9,32 @@ import pymysql
 from datetime import timedelta
 from datetime import date
 import re
+
+#----------------------------------------------------------------------
 from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
+#-----------------------------------------------------------------------------------------
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.core.utils import ChromeType
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+#-------------------------------------------------------------------------------------
 from selenium.webdriver.support.ui import WebDriverWait  # for implicit and explict waits
 from selenium.webdriver.chrome.options import Options  # for suppressing the browser
 #------------------------------------------------------------
 #Initializing the webdriver
+
+chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
+
 option = webdriver.ChromeOptions()
 option.add_argument('headless')
-driver = webdriver.Chrome('chromedriver.exe',options=option)
+driver = webdriver.Chrome( service=chrome_service, options= option  )
 driver.implicitly_wait(70)
+
+
+
 #------------------------------------------------------------
 # importing the global file that has information about each of the countries which have Indeed
 worldwidelinks = pd.read_csv ('worldwidelink.csv').set_index ('CountryName')
@@ -32,6 +46,7 @@ totalpostion = 0
 #------------------------------------------------------------
 # Collecting all pages links for each country in the dataset
 def collectinglinks ():
+  print ("Start collecting links")
   totalpostion = 0
   Links = []
   for country in worldwidelinks.index[1:3]:
