@@ -25,12 +25,20 @@ from selenium.webdriver.support.ui import WebDriverWait  # for implicit and expl
 from selenium.webdriver.chrome.options import Options  # for suppressing the browser
 #------------------------------------------------------------
 #Initializing the webdriver
-
 chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
-
-option = webdriver.ChromeOptions()
-option.add_argument('headless')
-driver = webdriver.Chrome( service=chrome_service, options= option  )
+chrome_options = Options()
+options = [
+"--headless",
+"--disable-gpu",
+"--window-size=1920,1200",
+"--ignore-certificate-errors",
+"--disable-extensions",
+"--no-sandbox",
+"--disable-dev-shm-usage"]
+for option in options:
+   chrome_options.add_argument(option)
+options = webdriver.ChromeOptions() 
+driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
 driver.implicitly_wait(70)
 
 
