@@ -49,7 +49,7 @@ def collectinglinks ():
   print ("Start collecting links")
   totalpostion = 0
   Links = []
-  for country in worldwidelinks.index[1:10]:
+  for country in worldwidelinks.index[1:3]:
     try :
         # preparation the link
         url = worldwidelinks['WebURL'].loc[country]+'jobs?q={}&fromage={}'.format (position ,filterdate )
