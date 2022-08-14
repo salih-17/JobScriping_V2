@@ -1,0 +1,44 @@
+name: Python script Action auto run
+on:
+  workflow_dispatch:
+
+  # Allows you to run this workflow manually from the Actions tab
+  schedule:
+  - cron: '0 */24 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - id: Rebo
+        name: Repo Checkout
+        uses: actions/checkout@v2
+        
+      - id: pip
+        name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+      - run: pip install -r requirements.txt
+
+      - id: Run_sc
+        name: execute py script
+        run: python IndeedMain.py
+        shell: bash 
+
+      - id: commit
+        name: Commit files
+        run:
+          git config --local user.name actions-user
+
+          git config --local user.email "actions@github.com"
+
+          git add *
+
+          git commit -am "GH ACTION Headlines $(date)"
+          
+          
+          git push -f origin main
+
+      
