@@ -36,7 +36,7 @@ driver = webdriver.Chrome( service=chrome_service, options= option  )
 #driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS)
 #------------------------------------------------------------
 # importing the global file that has information about each of the countries which have Indeed
-worldwidelinks = pd.read_csv ('worldwidelink.csv').set_index ('CountryName')
+worldwidelinks = pd.read_csv ('worldwidelink.csv').set_index ('CountryName')[1:5]
 #------------------------------------------------------------
 
 filterdate = 2
