@@ -266,8 +266,8 @@ def main():
     ff = gatheringdata(dd)
     df2 = pd.DataFrame(ff)
     
-    my_conn = create_engine("mysql+pymysql://admin:12345678@database-1.ciaff8ckhmlj.us-west-2.rds.amazonaws.com:3306/IndeedDataBase")
-    df2.to_sql (con =my_conn , name = 'IndeedDataSet5' , if_exists = 'append' , index = False )
+    #my_conn = create_engine("mysql+pymysql://admin:12345678@database-1.ciaff8ckhmlj.us-west-2.rds.amazonaws.com:3306/IndeedDataBase")
+    #df2.to_sql (con =my_conn , name = 'IndeedDataSet5' , if_exists = 'append' , index = False )
     
     try:
       #file_name = str(int(random.random()*12345)) + "_df.xlsx"
